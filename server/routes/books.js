@@ -23,7 +23,9 @@ router.get('/', (req, res, next) => {
     else {
       res.render('books/index', {
         title: 'Books',
-        books: books
+        books: books,
+        displayName: req.user ? req.user.displayName: ''
+
       });
     }
   });
@@ -35,7 +37,9 @@ router.get('/add', (req, res, next) => {
   //for dynamic redirection to add view
      res.render('books/details', {
     title: 'Add New book',
-    books: ''
+    books: '',
+    displayName: req.user ? req.user.displayName: ''
+
   });
 
 
@@ -78,7 +82,9 @@ router.get('/:id', (req, res, next) => {
           //show the detail view for edit or delete
           res.render('books/details',{
             title:'Edit Detail book',
-            books:bookObject
+            books:bookObject,
+            displayName: req.user ? req.user.displayName: ''
+
       });
       }
     });

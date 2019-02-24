@@ -53,9 +53,9 @@ router.post('/login', (req, res, next) => {
     if(err) {
       return next(err);
     }
-    // is there a user login error?
+    // if user login error?
     if(!user) {
-      req.flash("loginMessage", "Authentication Error");
+      req.flash("loginMessage", "Login Error");
       return res.redirect('/login');
     }
     req.logIn(user, (err) => {
@@ -63,7 +63,7 @@ router.post('/login', (req, res, next) => {
       if(err) {
         return next(err);
       }
-      return res.redirect('/contact-list');
+      return res.redirect('/books');
     });
   })(req, res, next);
   });
@@ -123,6 +123,11 @@ router.post('/register', (req, res, next) => {
  
   });
 //GET ==> perform user logout 
+
+router.get('/logout',(req, res, next) => {
+  req.logout();
+  res.redirect("/");
+});
 
 
 
