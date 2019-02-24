@@ -21,4 +21,27 @@ router.get('/', (req, res, next) => {
    });
 });
 
+
+/* GET ==> display the login pag */
+router.get('/login', (req, res, next) => {
+  res.render('content/index', {
+    title: 'Home',
+    books: ''
+   });
+});
+
+/* GET ==> processing the login pag */
+router.post('/login', (req, res, next) => {
+  res.render('content/index', {
+  
+   });
+});
+
+/* GET ==> display the user Registration page */
+
+/* GET ==> Processes the user Registration page */
+
+
+//GET ==> perform user logout 
+
 module.exports = router;
