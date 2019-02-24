@@ -10,6 +10,7 @@ let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
 
+let passport= require('passport');
 // define the book model
 let book = require('../models/books');
 
@@ -140,5 +141,11 @@ router.get('/delete/:id', (req, res, next) => {
     });
 });
 
+function requiredAuth(req, res, next){
+  //checking if the user is logged in
+  if(!req.isAuthenticated()){
+    return res.redirect('/login');
+  }
+}
 
 module.exports = router;
