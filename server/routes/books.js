@@ -1,3 +1,10 @@
+/*Author : Syed Nasir Gohary
+Student ID: 300937424
+Subject: Comp308-004
+Date: February 23, 2019
+Test type: Midterm
+Page: Books router
+ */
 // modules required for routing
 let express = require('express');
 let router = express.Router();
@@ -25,10 +32,7 @@ router.get('/', (req, res, next) => {
 
 //  GET the Book Details page in order to add a new Book
 router.get('/add', (req, res, next) => {
-
-    /*****************
-     * ADD CODE HERE *
-     *****************/
+  //for dynamic redirection to add view
      res.render('books/details', {
     title: 'Add New book',
     books: ''
@@ -39,10 +43,6 @@ router.get('/add', (req, res, next) => {
 
 // POST process the Book Details page and create a new Book - CREATE
 router.post('/add', (req, res, next) => {
-
-    /*****************
-     * ADD CODE HERE *
-     *****************/
     let newBook=book({
       "Title": req.body.title,
       //"Description":req.body.description,
@@ -57,7 +57,7 @@ router.post('/add', (req, res, next) => {
       }
       else
         {
-          //refresh the book list
+          //refresh the Favourite book list
           res.redirect('/books');
         }
     });
@@ -68,9 +68,6 @@ router.post('/add', (req, res, next) => {
 // GET the Book Details page in order to edit an existing Book
 router.get('/:id', (req, res, next) => {
 
-    /*****************
-     * ADD CODE HERE *
-     *****************/
     let id=req.params.id;
     book.findById(id,(err,bookObject)=>{
       if(err){
@@ -92,14 +89,11 @@ router.get('/:id', (req, res, next) => {
 // POST - process the information passed from the details form and update the document
 router.post('/:id', (req, res, next) => {
 
-    /*****************
-     * ADD CODE HERE *
-     *****************/
+  //delcaring an id
     let id=req.params.id;
 
+    //initiating a new object of the book model
     let newBooks = book({
-
-
       "_id": id,
       "Title": req.body.title,
      // "Description":req.body.description,
@@ -107,7 +101,7 @@ router.post('/:id', (req, res, next) => {
       "Author":req.body.author,
       "Genre":req.body.genre
     });
-   //functions for updating contact list
+   //functions for updating book list
     book.update({_id:id}, newBooks, (err)=>{
 
         if(err){
@@ -124,19 +118,16 @@ router.post('/:id', (req, res, next) => {
 
 // GET - process the delete by user id
 router.get('/delete/:id', (req, res, next) => {
-
-    /*****************
-     * ADD CODE HERE *
-     *****************/
-
+  //declaring an id 
     let id=req.params.id;
+    //deleting methods 
     book.remove({_id:id}, (err)=>{
 
         if(err){
             console.log(err);
             res.end(err);
         }else{
-            //Refresh Contact List
+            //Refresh Favvourite List
             res.redirect('/books');
     
         }

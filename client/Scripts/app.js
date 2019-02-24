@@ -1,3 +1,10 @@
+/*Author : Syed Nasir Gohary
+Student ID: 300937424
+Subject: Comp308-004
+Date: February 23, 2019
+Test type: Midterm
+Page: app.js
+ */
 /* custom JS goes here */
 
 /* pagination code from http://www.bootply.com/lxa0FF9yhw */
