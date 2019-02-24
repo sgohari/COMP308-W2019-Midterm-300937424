@@ -2,24 +2,27 @@
 
 <main class="container">
 
-    <% if(message.length>0) { %>
+    <% if(messages.length>0) { %>
         <div class="alert alert-danger">
-            <%= message %>
+            <%= messages %>
         </div>
     <% } %>
     <div class="row">
         <div class="col-md-offset-4 col-md-4">
             <h1>Please Login</h1>
-            <form method="POST">
+            <form method="POST" autocomplete="off">
                 <fieldset class="form-group">
                     <label for="username">Username</label
-                        ><input type="text" class="form-control" required
+                        >
+                        autocomplete="off"
+                        <input type="text" class="form-control" required
                         name="username" placeholder="Enter username.."
                         autofocus>
                 </fieldset>
                 <fieldset class="form-group">
-                    <label for="password"></label>
-                    <input type="password" class="form-control" 
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control"
+                    autocomplete="off" 
                     required name="password" placeholder="Enter password..">
                     or
                     <a href="/register"> Register Now </a>

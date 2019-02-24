@@ -29,13 +29,13 @@ let userSchema= mongoose.Schema({
     update:{
         type: Date,
         default: Date.now
-    },
-    
+    }
+},
     {
         collection: "users"
     }
 
-});
+);
 
 let options =({
     missingPassportError: "Wrong/Missing Password"
