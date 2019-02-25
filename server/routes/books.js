@@ -22,8 +22,9 @@ function requiredAuth(req, res, next){
 }
 
 /* GET books List page. READ */
-router.get('/',requiredAuth,(req, res, next) => {
+router.get('/',(req, res, next) => {
   // find all books in the books collection
+  
   book.find( (err, books) => {
     if (err) {
       return console.error(err);
