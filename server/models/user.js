@@ -1,7 +1,15 @@
+/*Author : Syed Nasir Gohary
+Student ID: 300937424
+Subject: Comp308-004
+Date: February 23, 2019
+Test type: Midterm
+Page: User.js
+ */
+
 // required modules for our User model
 let mongoose = require('mongoose');
 let passportLocalMongoose=require('passport-local-mongoose');
-
+// create a model class
 let userSchema= mongoose.Schema({
     username:{
         type: String,

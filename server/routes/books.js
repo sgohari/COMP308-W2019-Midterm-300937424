@@ -59,11 +59,11 @@ router.get('/add',requiredAuth,(req, res, next) => {
 router.post('/add',requiredAuth,(req, res, next) => {
     let newBook=book({
       "Title": req.body.title,
-      //"Description":req.body.description,
       "Price":req.body.price,
       "Author":req.body.author,
       "Genre":req.body.genre
     });
+    //Creating new object of book
     book.create(newBook,(err,book)=>{
       if(err){
         console.log(err);
@@ -91,7 +91,7 @@ router.get('/:id',requiredAuth,(req, res, next) => {
       else{
           //show the detail view for edit or delete
           res.render('books/details',{
-            title:'Edit Detail book',
+            title:'Edit Detail Book',
             books:bookObject,
             displayName: req.user ? req.user.displayName: ''
 
@@ -112,7 +112,6 @@ router.post('/:id',requiredAuth,(req, res, next) => {
     let newBooks = book({
       "_id": id,
       "Title": req.body.title,
-     // "Description":req.body.description,
       "Price":req.body.price,
       "Author":req.body.author,
       "Genre":req.body.genre

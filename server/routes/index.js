@@ -96,6 +96,7 @@ router.post('/register', (req, res, next) => {
     displayName: req.body.displayName
   });
 
+  //creating object for registration of new user
   User.register(newUser, req.body.password, (err) => {
     if (err) {
       console.log("Error: Inserting New User");
