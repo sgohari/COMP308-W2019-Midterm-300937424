@@ -14,8 +14,15 @@ let passport= require('passport');
 // define the book model
 let book = require('../models/books');
 
+function requiredAuth(req, res, next){
+  //checking if the user is logged in
+  if(!req.isAuthenticated()){
+    return res.redirect('/login');
+  }
+}
+
 /* GET books List page. READ */
-router.get('/', (req, res, next) => {
+router.get('/',requiredAuth,(req, res, next) => {
   // find all books in the books collection
   book.find( (err, books) => {
     if (err) {
@@ -34,7 +41,7 @@ router.get('/', (req, res, next) => {
 });
 
 //  GET the Book Details page in order to add a new Book
-router.get('/add', (req, res, next) => {
+router.get('/add',(req, res, next) => {
   //for dynamic redirection to add view
      res.render('books/details', {
     title: 'Add New book',
@@ -47,7 +54,7 @@ router.get('/add', (req, res, next) => {
 });
 
 // POST process the Book Details page and create a new Book - CREATE
-router.post('/add', (req, res, next) => {
+router.post('/add',(req, res, next) => {
     let newBook=book({
       "Title": req.body.title,
       //"Description":req.body.description,
@@ -71,7 +78,7 @@ router.post('/add', (req, res, next) => {
 });
 
 // GET the Book Details page in order to edit an existing Book
-router.get('/:id', (req, res, next) => {
+router.get('/:id',(req, res, next) => {
 
     let id=req.params.id;
     book.findById(id,(err,bookObject)=>{
@@ -94,7 +101,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 // POST - process the information passed from the details form and update the document
-router.post('/:id', (req, res, next) => {
+router.post('/:id',(req, res, next) => {
 
   //delcaring an id
     let id=req.params.id;
@@ -141,11 +148,6 @@ router.get('/delete/:id', (req, res, next) => {
     });
 });
 
-function requiredAuth(req, res, next){
-  //checking if the user is logged in
-  if(!req.isAuthenticated()){
-    return res.redirect('/login');
-  }
-}
+
 
 module.exports = router;
